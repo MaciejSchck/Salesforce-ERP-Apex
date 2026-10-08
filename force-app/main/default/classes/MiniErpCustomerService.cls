@@ -1,6 +1,6 @@
 public class MiniErpCustomerService {
 
-    public static String getCustomers() {
+    public static List<MiniErpCustomer> getCustomers() {
 
         Http http = new Http();
 
@@ -12,6 +12,9 @@ public class MiniErpCustomerService {
 
         HttpResponse response = http.send(request);
 
-        return response.getBody();
+        return (List<MiniErpCustomer>) JSON.deserialize(
+        response.getBody(),
+        List<MiniErpCustomer>.class
+);
     }
 }
